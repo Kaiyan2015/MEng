@@ -20,59 +20,59 @@ if __name__ == "__main__":
 			break
 		elif operation == 0:
 			for i in range(8):
-				GPIO.OUTPUT(GPIO_OUT[i], 0)
+				GPIO.output(GPIO_OUT[i], 0)
 		elif operation == 1:
 			for i in range(8):
 				if i == 1:
-					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
+					GPIO.output(GPIO_OUT[i-1], 1)
 				else:
-					GPIO.OUTPUT(GPIO_OUT[i], 0)
+					GPIO.output(GPIO_OUT[i], 0)
 			
 		elif operation == 2:
 			for i in range(8):
 				if i == 2:
-					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
+					GPIO.output(GPIO_OUT[i-1], 1)
 				else:
-					GPIO.OUTPUT(GPIO_OUT[i], 0)
+					GPIO.output(GPIO_OUT[i], 0)
 		elif operation == 3:
 			for i in range(8):
 				if i == 3:
-					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
+					GPIO.output(GPIO_OUT[i-1], 1)
 				else:
-					GPIO.OUTPUT(GPIO_OUT[i], 0)
+					GPIO.output(GPIO_OUT[i], 0)
 		elif operation == 4:
 			for i in range(8):
 				if i == 4:
-					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
+					GPIO.output(GPIO_OUT[i-1], 1)
 				else:
-					GPIO.OUTPUT(GPIO_OUT[i], 0)
+					GPIO.output(GPIO_OUT[i], 0)
 		elif operation == 5:
 			for i in range(8):
 				if i == 5:
-					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
+					GPIO.output(GPIO_OUT[i-1], 1)
 				else:
-					GPIO.OUTPUT(GPIO_OUT[i], 0)
+					GPIO.output(GPIO_OUT[i], 0)
 		elif operation == 6:
 			for i in range(8):
 				if i == 6:
-					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
+					GPIO.output(GPIO_OUT[i-1], 1)
 				else:
-					GPIO.OUTPUT(GPIO_OUT[i], 0)
+					GPIO.output(GPIO_OUT[i], 0)
 		elif operation == 7:
 			for i in range(7):
 				if i == 1:
-					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
+					GPIO.output(GPIO_OUT[i-1], 1)
 				else:
-					GPIO.OUTPUT(GPIO_OUT[i], 0)
+					GPIO.output(GPIO_OUT[i], 0)
 		elif operation == 8:
 			for i in range(8):
 				if i == 8:
-					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
+					GPIO.output(GPIO_OUT[i-1], 1)
 				else:
-					GPIO.OUTPUT(GPIO_OUT[i], 0)
+					GPIO.output(GPIO_OUT[i], 0)
 		elif operation == 9:
 			for i in range(8):
-				GPIO.OUTPUT(GPIO_OUT[i], 1)
+				GPIO.output(GPIO_OUT[i], 1)
 		else:
 			pass
 

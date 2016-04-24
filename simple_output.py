@@ -59,7 +59,7 @@ if __name__ == "__main__":
 				else:
 					GPIO.output(GPIO_OUT[i], 0)
 		elif operation == 7:
-			for i in range(7):
+			for i in range(8):
 				if i == 7:
 					GPIO.output(GPIO_OUT[i-1], 1)
 				else:
@@ -76,7 +76,7 @@ if __name__ == "__main__":
 		else:
 			pass
 
-
+	GPIO.cleanup()
 
 
 

@@ -15,8 +15,8 @@ GPIO_OUT = [5, 6, 13, 19, 26, 12, 16, 20]
 
 if __name__ == "__main__":
 	while 1:
-		operation = input('Input number 0~9 to perform operation, or \'q\' to exit: ')
-		if operation == 'q':
+		operation = input('Input number 0~9 to perform operation, or -1 to exit: ')
+		if operation == '-1':
 			break
 		elif operation == '0':
 			for i in range(8):

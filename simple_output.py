@@ -66,10 +66,8 @@ if __name__ == "__main__":
 					GPIO.output(GPIO_OUT[i], 0)
 		elif operation == 8:
 			for i in range(8):
-				if i == 8:
-					GPIO.output(GPIO_OUT[i-1], 1)
-				else:
-					GPIO.output(GPIO_OUT[i], 0)
+				GPIO.output(GPIO_OUT[i], 0)
+			GPIO.output(20, 1)
 		elif operation == 9:
 			for i in range(8):
 				GPIO.output(GPIO_OUT[i], 1)

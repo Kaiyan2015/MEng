@@ -16,61 +16,61 @@ GPIO_OUT = [5, 6, 13, 19, 26, 12, 16, 20]
 if __name__ == "__main__":
 	while 1:
 		operation = input('Input number 0~9 to perform operation, or -1 to exit: ')
-		if operation == '-1':
+		if operation == -1:
 			break
-		elif operation == '0':
+		elif operation == 0:
 			for i in range(8):
 				GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operation == '1':
+		elif operation == 1:
 			for i in range(8):
 				if i == 1:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
 			
-		elif operation == '2':
+		elif operation == 2:
 			for i in range(8):
 				if i == 2:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operation == '3':
+		elif operation == 3:
 			for i in range(8):
 				if i == 3:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operation == '4':
+		elif operation == 4:
 			for i in range(8):
 				if i == 4:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operation == '5':
+		elif operation == 5:
 			for i in range(8):
 				if i == 5:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operation == '6':
+		elif operation == 6:
 			for i in range(8):
 				if i == 6:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operation == '7':
+		elif operation == 7:
 			for i in range(7):
 				if i == 1:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operation == '8':
+		elif operation == 8:
 			for i in range(8):
 				if i == 8:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operation == '9':
+		elif operation == 9:
 			for i in range(8):
 				GPIO.OUTPUT(GPIO_OUT[i], 1)
 		else:

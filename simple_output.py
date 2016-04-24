@@ -60,7 +60,7 @@ if __name__ == "__main__":
 					GPIO.output(GPIO_OUT[i], 0)
 		elif operation == 7:
 			for i in range(7):
-				if i == 1:
+				if i == 7:
 					GPIO.output(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.output(GPIO_OUT[i], 0)

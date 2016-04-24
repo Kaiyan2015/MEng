@@ -21,56 +21,56 @@ if __name__ == "__main__":
 		elif operation == '0':
 			for i in range(8):
 				GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operaion == '1':
+		elif operation == '1':
 			for i in range(8):
 				if i == 1:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
 			
-		elif operaion == '2':
+		elif operation == '2':
 			for i in range(8):
 				if i == 2:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operaion == '3':
+		elif operation == '3':
 			for i in range(8):
 				if i == 3:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operaion == '4':
+		elif operation == '4':
 			for i in range(8):
 				if i == 4:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operaion == '5':
+		elif operation == '5':
 			for i in range(8):
 				if i == 5:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operaion == '6':
+		elif operation == '6':
 			for i in range(8):
 				if i == 6:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operaion == '7':
+		elif operation == '7':
 			for i in range(7):
 				if i == 1:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operaion == '8':
+		elif operation == '8':
 			for i in range(8):
 				if i == 8:
 					GPIO.OUTPUT(GPIO_OUT[i-1], 1)
 				else:
 					GPIO.OUTPUT(GPIO_OUT[i], 0)
-		elif operaion == '9':
+		elif operation == '9':
 			for i in range(8):
 				GPIO.OUTPUT(GPIO_OUT[i], 1)
 		else:

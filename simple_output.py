@@ -67,7 +67,7 @@ if __name__ == "__main__":
 		elif operation == 8:
 			for i in range(8):
 				GPIO.output(GPIO_OUT[i], 0)
-			GPIO.output(20, 1)
+			GPIO.output(GPIO[7], 1)
 		elif operation == 9:
 			for i in range(8):
 				GPIO.output(GPIO_OUT[i], 1)

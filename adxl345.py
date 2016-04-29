@@ -54,11 +54,11 @@ class ADXL345:
 		
 	address = None
 
-	def __init__(self, address = 0x53):        
+	def __init__(self, address = 0x53):
 		self.address = address
 		self.setBandwidthRate(BW_RATE_100HZ)
-	    self.setRange(RANGE_2G)
-	    self.enableMeasurement()
+		self.setRange(RANGE_2G)
+		self.enableMeasurement()
 	
 	def enableMeasurement(self):
 	    bus.write_byte_data(self.address, POWER_CTL, MEASURE)

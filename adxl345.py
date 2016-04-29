@@ -85,6 +85,7 @@ class ADXL345:
 	    #    True           : result is returned in gs
 	def getAxes(self, gforce = False):
 	        bytes = bus.read_i2c_block_data(self.address, AXES_DATA, 6)
+	        GPIO.setmode(GPIO.BCM)
 	        
 	        x = bytes[0] | (bytes[1] << 8)
 	        if(x & (1 << 16 - 1)):

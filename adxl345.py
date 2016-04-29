@@ -119,7 +119,7 @@ class ADXL345:
 	bits = []
 	#suppose we output x axix acceleration via GPIO_OUT0~8
 	for i in range(8):
-		bits[i] = (x1 & (0b1 << i))>>i
+		bits.append((x1 & (0b1 << i))>>i)
 		GPIO.OUTPUT(GPIO_OUT[i], bits[i]) 
 
 	

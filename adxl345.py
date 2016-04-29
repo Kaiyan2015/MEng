@@ -15,21 +15,11 @@ import time
 
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(5, GPIO.OUT)
-GPIO.setup(6, GPIO.OUT)
-GPIO.setup(13, GPIO.OUT)
-GPIO.setup(19, GPIO.OUT)
-GPIO.setup(26, GPIO.OUT)
-GPIO.setup(12, GPIO.OUT)
-GPIO.setup(16, GPIO.OUT)
-GPIO.setup(20, GPIO.OUT)
-
 
 #LSB to MSB
 GPIO_OUT = [5, 6, 13, 19, 26, 12, 16 ,20]
-
-
-
+for i in range(8):
+	GPIO.setup(GPIO_OUT[i],GPIO.OUT)
 
 
 

@@ -83,19 +83,18 @@ class ADXL345:
 	    #    True           : result is returned in gs
 	def getAxes(self, gforce = False):
 		bytes = bus.read_i2c_block_data(self.address, AXES_DATA, 6)
-	    GPIO.setmode(GPIO.BCM)
-	        
-	    x = bytes[0] | (bytes[1] << 8)
-	    if(x & (1 << 16 - 1)):
-	        x = x - (1<<16)
-	
-	    y = bytes[2] | (bytes[3] << 8)
-	    if(y & (1 << 16 - 1)):
-	        y = y - (1<<16)
-	
-	    z = bytes[4] | (bytes[5] << 8)
-	    if(z & (1 << 16 - 1)):
-	        z = z - (1<<16)
+		GPIO.setmode(GPIO.BCM)
+		x = bytes[0] | (bytes[1] << 8)
+		if(x & (1 << 16 - 1)):
+			x = x - (1<<16)
+
+		y = bytes[2] | (bytes[3] << 8)
+		if(y & (1 << 16 - 1)):
+			y = y - (1<<16)
+
+		z = bytes[4] | (bytes[5] << 8)
+		if(z & (1 << 16 - 1)):
+			z = z - (1<<16)
 		
 		x1 = x + 512
 		y1 = y + 512
@@ -111,30 +110,29 @@ class ADXL345:
 		# for i in range(8):
 		# 	bits.append((x1 & (0b1 << i))>>i)
 		# 	GPIO.output(GPIO_OUT[i], bits[i]) 
+		x = x * SCALE_MULTIPLIER 
+		y = y * SCALE_MULTIPLIER
+		z = z * SCALE_MULTIPLIER
 		
-	    x = x * SCALE_MULTIPLIER 
-	    y = y * SCALE_MULTIPLIER
-	    z = z * SCALE_MULTIPLIER
-	
-	    if gforce == False:
-	        x = x * EARTH_GRAVITY_MS2
-	        y = y * EARTH_GRAVITY_MS2
-	        z = z * EARTH_GRAVITY_MS2
+		if gforce == False:
+			x = x * EARTH_GRAVITY_MS2
+			y = y * EARTH_GRAVITY_MS2
+			z = z * EARTH_GRAVITY_MS2
 		
-	    x = round(x, 4)
-        y = round(y, 4)
-	    z = round(z, 4)
+		x = round(x, 4)
+		y = round(y, 4)
+		z = round(z, 4)
 		
 		GPIO.cleanup()
-	    return {"x": x, "y": y, "z": z}
+		return {"x": x, "y": y, "z": z}
 
 if __name__ == "__main__":
     # if run directly we'll just create an instance of the class and output 
     # the current readings
-    adxl345 = ADXL345()
+	adxl345 = ADXL345()
     
-    axes = adxl345.getAxes(True)
-    print "ADXL345 on address 0x%x:" % (adxl345.address)
-    print "   x = %.3fG" % ( axes['x'] )
-    print "   y = %.3fG" % ( axes['y'] )
-    print "   z = %.3fG" % ( axes['z'] )
+	axes = adxl345.getAxes(True)
+	print "ADXL345 on address 0x%x:" % (adxl345.address)
+	print "   x = %.3fG" % ( axes['x'] )
+	print "   y = %.3fG" % ( axes['y'] )
+	print "   z = %.3fG" % ( axes['z'] )

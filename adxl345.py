@@ -14,6 +14,10 @@ import RPi.GPIO as GPIO
 import time
 
 
+GPIO.setmode(GPIO.BCM)
+GPIO_OUT = [5, 6, 13, 19, 26, 12, 16 ,20]
+for i in range(8):
+	GPIO.setup(GPIO_OUT[i],GPIO.OUT)
 
 
 
@@ -47,12 +51,9 @@ MEASURE             = 0x08
 AXES_DATA           = 0x32
 
 class ADXL345:
-	GPIO.setmode(GPIO.BCM)
-
+	
 	#LSB to MSB
-	GPIO_OUT = [5, 6, 13, 19, 26, 12, 16 ,20]
-	for i in range(8):
-		GPIO.setup(GPIO_OUT[i],GPIO.OUT)	
+		
 	address = None
 
 	def __init__(self, address = 0x53):        

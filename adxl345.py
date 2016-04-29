@@ -14,12 +14,7 @@ import RPi.GPIO as GPIO
 import time
 
 
-GPIO.setmode(GPIO.BCM)
 
-#LSB to MSB
-GPIO_OUT = [5, 6, 13, 19, 26, 12, 16 ,20]
-for i in range(8):
-	GPIO.setup(GPIO_OUT[i],GPIO.OUT)
 
 
 
@@ -52,83 +47,88 @@ MEASURE             = 0x08
 AXES_DATA           = 0x32
 
 class ADXL345:
+	GPIO.setmode(GPIO.BCM)
 
-    address = None
-
-    def __init__(self, address = 0x53):        
-        self.address = address
-        self.setBandwidthRate(BW_RATE_100HZ)
-        self.setRange(RANGE_2G)
-        self.enableMeasurement()
-
-    def enableMeasurement(self):
-        bus.write_byte_data(self.address, POWER_CTL, MEASURE)
-
-    def setBandwidthRate(self, rate_flag):
-        bus.write_byte_data(self.address, BW_RATE, rate_flag)
-
-    # set the measurement range for 10-bit readings
-    def setRange(self, range_flag):
-        value = bus.read_byte_data(self.address, DATA_FORMAT)
-
-        value &= ~0x0F;
-        value |= range_flag;  
-        value |= 0x08;
-
-        bus.write_byte_data(self.address, DATA_FORMAT, value)
-    
-    # returns the current reading from the sensor for each axis
-    #
-    # parameter gforce:
-    #    False (default): result is returned in m/s^2
-    #    True           : result is returned in gs
-    def getAxes(self, gforce = False):
-        bytes = bus.read_i2c_block_data(self.address, AXES_DATA, 6)
-        
-        x = bytes[0] | (bytes[1] << 8)
-        if(x & (1 << 16 - 1)):
-            x = x - (1<<16)
-
-        y = bytes[2] | (bytes[3] << 8)
-        if(y & (1 << 16 - 1)):
-            y = y - (1<<16)
-
-        z = bytes[4] | (bytes[5] << 8)
-        if(z & (1 << 16 - 1)):
-            z = z - (1<<16)
-	
-	x1 = x + 512
-	y1 = y + 512
-	z1 = z + 512
-	
-	#TODO: truncate the bits to 8
-	x1 = x1 >> 2
-	y1 = y1 >> 2
-	z1 = z1 >> 2
-	
-	bits = []
-	#suppose we output x axix acceleration via GPIO_OUT0~8
+	#LSB to MSB
+	GPIO_OUT = [5, 6, 13, 19, 26, 12, 16 ,20]
 	for i in range(8):
-		bits.append((x1 & (0b1 << i))>>i)
-		GPIO.output(GPIO_OUT[i], bits[i]) 
+		GPIO.setup(GPIO_OUT[i],GPIO.OUT)	
+	address = None
 
+	def __init__(self, address = 0x53):        
+		self.address = address
+		self.setBandwidthRate(BW_RATE_100HZ)
+	        self.setRange(RANGE_2G)
+	        self.enableMeasurement()
 	
+	def enableMeasurement(self):
+	        bus.write_byte_data(self.address, POWER_CTL, MEASURE)
 	
-        x = x * SCALE_MULTIPLIER 
-        y = y * SCALE_MULTIPLIER
-        z = z * SCALE_MULTIPLIER
-
-        if gforce == False:
-            x = x * EARTH_GRAVITY_MS2
-            y = y * EARTH_GRAVITY_MS2
-            z = z * EARTH_GRAVITY_MS2
+	def setBandwidthRate(self, rate_flag):
+	        bus.write_byte_data(self.address, BW_RATE, rate_flag)
 	
-        x = round(x, 4)
-        y = round(y, 4)
-        z = round(z, 4)
+	    # set the measurement range for 10-bit readings
+	def setRange(self, range_flag):
+	        value = bus.read_byte_data(self.address, DATA_FORMAT)
 	
-	GPIO.cleanup()
-        return {"x": x, "y": y, "z": z}
+	        value &= ~0x0F;
+	        value |= range_flag;  
+	        value |= 0x08;
+	
+	        bus.write_byte_data(self.address, DATA_FORMAT, value)
+	    
+	    # returns the current reading from the sensor for each axis
+	    #
+	    # parameter gforce:
+	    #    False (default): result is returned in m/s^2
+	    #    True           : result is returned in gs
+	def getAxes(self, gforce = False):
+	        bytes = bus.read_i2c_block_data(self.address, AXES_DATA, 6)
+	        
+	        x = bytes[0] | (bytes[1] << 8)
+	        if(x & (1 << 16 - 1)):
+	            x = x - (1<<16)
+	
+	        y = bytes[2] | (bytes[3] << 8)
+	        if(y & (1 << 16 - 1)):
+	            y = y - (1<<16)
+	
+	        z = bytes[4] | (bytes[5] << 8)
+	        if(z & (1 << 16 - 1)):
+	            z = z - (1<<16)
+		
+		x1 = x + 512
+		y1 = y + 512
+		z1 = z + 512
+		
+		#TODO: truncate the bits to 8
+		x1 = x1 >> 2
+		y1 = y1 >> 2
+		z1 = z1 >> 2
+		
+		bits = []
+		#suppose we output x axix acceleration via GPIO_OUT0~8
+		for i in range(8):
+			bits.append((x1 & (0b1 << i))>>i)
+			GPIO.output(GPIO_OUT[i], bits[i]) 
+	
+		
+		
+	        x = x * SCALE_MULTIPLIER 
+	        y = y * SCALE_MULTIPLIER
+	        z = z * SCALE_MULTIPLIER
+	
+	        if gforce == False:
+	            x = x * EARTH_GRAVITY_MS2
+	            y = y * EARTH_GRAVITY_MS2
+	            z = z * EARTH_GRAVITY_MS2
+		
+	        x = round(x, 4)
+	        y = round(y, 4)
+	        z = round(z, 4)
+		
+		GPIO.cleanup()
+	        return {"x": x, "y": y, "z": z}
 
 if __name__ == "__main__":
     # if run directly we'll just create an instance of the class and output 
